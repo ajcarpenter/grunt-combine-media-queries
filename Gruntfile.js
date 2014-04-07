@@ -8,42 +8,50 @@
 
 'use strict';
 
-module.exports = function(grunt) {
+module.exports = function (grunt) {
 
-  grunt.initConfig({
-    jshint: {
-      all: ['Gruntfile.js', 'tasks/*.js'],
-      options: {
-        jshintrc: '.jshintrc'
-      },
-    },
-    clean: {
-      tests: ['tmp']
-    },
-    cmq: {
-      options: {
-        log: true
-      },
-      your_target: {
-        files: {
-          'tmp': ['test/test3.css']
+    grunt.initConfig({
+        jshint: {
+            all: ['Gruntfile.js', 'tasks/*.js'],
+            options: {
+                jshintrc: '.jshintrc'
+            },
+        },
+        clean: {
+            tests: ['tmp']
+        },
+        cmq: {
+            options: {
+                log: true
+            },
+            your_target: {
+                files: {
+                    'tmp': ['test/test3.css']
+                }
+            },
+            dynamic: {
+                expand: true,
+                cwd: 'test/',
+                src: ['*.css'],
+                dest: 'tmp/'
+            },
+            split: {
+                files: {
+                    'tmp': ['test/test3.css']
+                },
+                options: {
+                    splitWithSuffix: 'mobile'
+                }
+            }
         }
-      },
-      dynamic: {
-        expand: true,
-        cwd: 'test/',
-        src: ['*.css'],
-        dest: 'tmp/'
-      }
-    }
 
-  });
+    });
 
-  grunt.loadTasks('tasks');
+    grunt.loadTasks('tasks');
 
-  grunt.loadNpmTasks('grunt-contrib-jshint');
-  grunt.loadNpmTasks('grunt-contrib-clean');
-  grunt.loadNpmTasks('grunt-release');
-  grunt.registerTask('default', ['clean', 'jshint', 'cmq']);
+    grunt.loadNpmTasks('grunt-contrib-jshint');
+    grunt.loadNpmTasks('grunt-contrib-clean');
+    grunt.loadNpmTasks('grunt-release');
+    grunt.registerTask('default', ['clean', 'jshint', 'cmq']);
 
 };
