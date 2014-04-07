@@ -43,6 +43,13 @@ Default: `false`
 
 Log processed media queries.
 
+#### splitWithSuffix
+
+Type: `boolean`/`string`
+Default: `false`
+
+If a string is provided, media queried styles will be split in to a separate file with the provided suffix.
+
 ### Usage Examples
 
 #### Default Options
@@ -53,6 +60,7 @@ grunt.initConfig({
   cmq: {
     options: {
       log: false
+      splitWithSuffix: 'mobile'
     },
     your_target: {
       files: {
